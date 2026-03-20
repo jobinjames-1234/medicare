@@ -1,0 +1,189 @@
+/* Forms */
+.contact-form {
+    padding: 3rem;
+    border-radius: var(--radius-md);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.booking-section {
+    min-height: calc(100vh - 80px);
+    padding: 8rem 1rem 4rem;
+    display: flex;
+    justify-content: center;
+    background: radial-gradient(circle at top, #DBEAFE, #F8FAFC);
+}
+
+.booking-container {
+    width: 100%;
+    max-width: 650px;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+}
+
+.booking-form-box {
+    padding: 3rem 2.5rem;
+}
+
+.booking-form-box .form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.8rem;
+    font-weight: 800;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-main);
+    letter-spacing: 0.5px;
+}
+
+input, select {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 2px solid #F1F5F9;
+    border-radius: 16px;
+    background: #F8FAFC;
+    font-size: 1rem;
+    color: var(--text-main);
+    transition: all 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus {
+    outline: none;
+    border-color: var(--primary-blue);
+    background: white;
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+}
+
+.form-group input.error, .form-group select.error {
+    border-color: #ef4444;
+    background: #fffcfc;
+}
+
+.error-msg {
+    color: #ef4444;
+    font-size: 0.75rem;
+    font-weight: 500;
+    margin-top: 5px;
+    display: none;
+    animation: fadeIn 0.3s ease;
+}
+
+.form-group.has-error .error-msg { display: block; }
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Time Slots */
+.slots-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 12px;
+}
+
+.slot-btn {
+    padding: 0.8rem;
+    border: 2px solid #F1F5F9;
+    background: white;
+    border-radius: 12px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+}
+
+.slot-btn:hover:not(.booked) {
+    border-color: var(--primary-blue);
+    color: var(--primary-blue);
+}
+
+.slot-btn.booked {
+    background: #FEE2E2;
+    color: #EF4444;
+    border-color: #FECACA;
+    cursor: not-allowed;
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.slot-btn.selected {
+    background: var(--primary-blue);
+    color: white;
+    border-color: var(--primary-blue);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+}
+
+/* Doctor Profile Widget (in Booking) */
+.doctor-card-hidden { display: none !important; }
+.doctor-card-show {
+    display: block;
+    margin: 1.5rem 0 2rem;
+    animation: fadeInUp 0.4s ease-out;
+}
+
+.doctor-card {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    background: #FFFFFF;
+    padding: 1.2rem;
+    border-radius: 20px;
+    border: 1px solid #E2E8F0;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+}
+
+.dc-photo {
+    width: 80px; height: 80px;
+    border-radius: 15px;
+    object-fit: cover;
+}
+
+.dc-info h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 2px;
+}
+
+.dc-spec {
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.dc-details {
+    display: flex;
+    gap: 15px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+@media (max-width: 600px) {
+    .form-row { grid-template-columns: 1fr; }
+    .contact-form { padding: 2rem 1.5rem; }
+}
+
+@media (max-width: 768px) {
+    .booking-section { padding: 6rem 1rem 2rem; }
+    .booking-form-box { padding: 2rem 1.5rem; }
+    .doctor-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 2rem;
+    }
+    .dc-photo { width: 100px; height: 100px; margin-bottom: 1rem; }
+    .dc-details { flex-direction: column; gap: 8px; align-items: center; }
+    .slots-container { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 480px) {
+    .slots-container { grid-template-columns: 1fr; }
+}

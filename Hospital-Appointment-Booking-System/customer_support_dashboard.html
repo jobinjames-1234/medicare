@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support Dashboard - CarePlus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <style>
+        body {
+            background-color: var(--bg-light);
+            font-family: 'Outfit', sans-serif;
+        }
+        .dashboard-container { display: flex; min-height: 100vh; }
+        .sidebar {
+            width: 250px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 2rem 1rem;
+            border-right: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 4px 0 15px rgba(0, 0, 0, 0.03);
+            z-index: 10;
+        }
+        .main-content { flex: 1; padding: 2rem; background: var(--bg-light); }
+        .nav-item {
+            padding: 12px 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            margin-bottom: 8px;
+            color: var(--text-light);
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background: rgba(37, 99, 235, 0.05);
+            color: var(--primary-blue);
+            transform: translateX(5px);
+        }
+        .nav-item.active {
+            background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(14, 165, 233, 0.1) 100%);
+            color: var(--primary-blue);
+            font-weight: 600;
+            border-left: 4px solid var(--primary-blue);
+        }
+        .nav-item.text-danger:hover {
+            background: rgba(220, 53, 69, 0.1);
+            color: #dc3545 !important;
+        }
+
+        .table-modern {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 10px;
+        }
+        .table-modern th {
+            font-weight: 600;
+            color: var(--text-light);
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            padding: 10px 20px;
+            border: none;
+        }
+        .table-modern td {
+            background: #fff;
+            padding: 15px 20px;
+            vertical-align: middle;
+            border-top: 1px solid rgba(0,0,0,0.02);
+            border-bottom: 1px solid rgba(0,0,0,0.02);
+            font-size: 0.95rem;
+        }
+        .table-modern td:first-child {
+            border-top-left-radius: 10px;
+            border-bottom-left-radius: 10px;
+            border-left: 1px solid rgba(0,0,0,0.02);
+        }
+        .table-modern td:last-child {
+            border-top-right-radius: 10px;
+            border-bottom-right-radius: 10px;
+            border-right: 1px solid rgba(0,0,0,0.02);
+        }
+        .table-modern tbody tr:hover td {
+            background: #fafbfe;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container">
+        <div class="sidebar">
+            <a href="index.html" class="logo mb-4" style="font-size: 1.2rem;">
+                <div class="logo-icon" style="width: 30px; height: 30px;">+</div> CarePlus Support
+            </a>
+            <div class="nav-item active" onclick="switchTab('messages')">Messages</div>
+            <div class="nav-item" onclick="switchTab('profile')">My Profile</div>
+            <div class="nav-item text-danger mt-5" onclick="logout()">Logout</div>
+        </div>
+
+        <div class="main-content">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2 id="pageTitle" style="font-weight: 800; color: var(--text-dark);">Messages</h2>
+                <div class="d-flex align-items-center gap-3">
+                    <span class="badge rounded-pill px-3 py-2" style="background-color: var(--primary-blue); color: white;">Customer Support</span>
+                </div>
+            </div>
+
+            <div id="messagesTab">
+                <div class="glass-card p-4">
+                    <div class="table-responsive">
+                        <table class="table-modern">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>WhatsApp</th>
+                                    <th>Subject</th>
+                                    <th>Message</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="supportMessagesList">
+                                <tr><td colspan="8" class="text-center py-4 text-muted">Loading messages...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="profileTab" class="d-none">
+                <div class="glass-card p-4 mx-auto" style="max-width: 700px;">
+                    <div class="d-flex justify-content-between align-items-center mb-4">
+                        <h4 style="font-weight: 700; color: var(--primary-blue); margin: 0;">My Profile</h4>
+                        <button class="btn btn-sm btn-outline-primary rounded-pill px-3" data-bs-toggle="modal" data-bs-target="#editSupportProfileModal">Edit Profile</button>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 text-muted fw-bold">Name:</div>
+                        <div class="col-sm-8 fw-500" id="spName"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 text-muted fw-bold">Email:</div>
+                        <div class="col-sm-8 fw-500" id="spEmail"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 text-muted fw-bold">Role:</div>
+                        <div class="col-sm-8 fw-500" id="spRole"></div>
+                    </div>
+                    <div class="row mb-3">
+                        <div class="col-sm-4 text-muted fw-bold">Created At:</div>
+                        <div class="col-sm-8 fw-500" id="spCreatedAt"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="editSupportProfileModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0" style="border-radius: 20px; overflow: hidden;">
+                <div class="modal-header border-0 bg-primary text-white p-4">
+                    <h5 class="modal-title fw-bold">Edit Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form id="editSupportProfileForm">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-uppercase">Full Name</label>
+                            <input type="text" id="editSupportName" class="form-control rounded-3" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-uppercase">Email Address</label>
+                            <input type="email" id="editSupportEmail" class="form-control rounded-3" required>
+                        </div>
+                        <hr class="my-4">
+                        <div class="mb-3">
+                            <label class="form-label fw-bold small text-uppercase">Current Password (optional)</label>
+                            <div class="input-group">
+                                <input type="password" id="editSupportCurrentPassword" class="form-control rounded-start-3" autocomplete="new-password" placeholder="Enter current password to change">
+                                <button class="btn btn-outline-secondary password-toggle" type="button" data-target="#editSupportCurrentPassword" aria-label="Show or hide current password">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small text-uppercase">New Password (optional)</label>
+                                <div class="input-group">
+                                    <input type="password" id="editSupportNewPassword" class="form-control rounded-start-3" minlength="6" autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary password-toggle" type="button" data-target="#editSupportNewPassword" aria-label="Show or hide new password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label fw-bold small text-uppercase">Confirm Password</label>
+                                <div class="input-group">
+                                    <input type="password" id="editSupportConfirmPassword" class="form-control rounded-start-3" minlength="6" autocomplete="new-password">
+                                    <button class="btn btn-outline-secondary password-toggle" type="button" data-target="#editSupportConfirmPassword" aria-label="Show or hide confirm password">
+                                        <i class="bi bi-eye"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="small text-muted mb-3">
+                            Leave password fields empty if you do not want to change your password.
+                            <a href="forgot_password.html" class="ms-2">Forgot password?</a>
+                        </div>
+                        <div class="d-grid mt-4">
+                            <button type="submit" class="btn btn-primary rounded-pill py-2 fw-bold">Save Changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/customer_support.js"></script>
+</body>
+</html>

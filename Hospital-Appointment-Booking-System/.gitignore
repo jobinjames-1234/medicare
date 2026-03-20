@@ -1,0 +1,21 @@
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Backend
+backend/config.php
+# (Optional: developers should create their own config.php from a template)
+
+# Documentation
+*.log
+tmp/
+*.pdf
+*.png
+*.txt
+*.zip

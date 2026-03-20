@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment - CarePlus</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<!-- Navigation -->
+<!-- Navigation - For: Jidhin (HTML) & Jasir (Bootstrap) -->
+<nav class="glass-card">
+    <a href="index.html" class="logo">
+        <div class="logo-icon">+</div> CarePlus
+    </a>
+    <div class="nav-links" id="navLinks">
+        <a href="index.html#home">Home</a>
+        <a href="index.html#specialty">Specialties</a>
+        <a href="index.html#doctors">Doctors</a>
+        <a href="index.html#contact">Contact</a>
+        <a href="login.html" class="login-link mobile-only">Login</a>
+        <a href="booking.html" class="btn-primary mobile-only" style="margin-top: 1rem;">Book Now</a>
+    </div>
+    <div class="nav-actions">
+        <a href="login.html" class="btn-outline-primary desktop-only auth-btn" style="padding: 0.6rem 1.5rem; font-size: 0.9rem; margin-right: 10px; text-decoration: none; border-radius: 50px; border: 2px solid var(--primary-blue); color: var(--primary-blue); font-weight: 600; background: transparent; transition: all 0.3s ease;">Login</a>
+        <a href="booking.html" class="btn-primary desktop-only" style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Book Now</a>
+        <button class="mobile-menu-btn" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</nav>
+
+<!-- Main Booking Form - For: Jidhin (Semantic HTML) -->
+<section class="booking-section">
+    <main class="booking-container glass-card">
+        <header class="booking-header" style="text-align: center; padding: 3rem 2rem 1rem;">
+            <h1 style="font-weight: 800; font-size: 2.2rem; margin-bottom: 0.5rem;">Book <span>Appointment</span></h1>
+            <p style="color: var(--text-muted); font-size: 1rem;">Choose your preferred specialist and time slot</p>
+        </header>
+
+        <section class="booking-form-box">
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label>Patient Full Name</label>
+                    <input type="text" id="patientName" placeholder="John Doe" required autocomplete="off">
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" id="patientPhone" placeholder="+91 98765 43210" required autocomplete="off">
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Category (Specialty)</label>
+                    <div class="select-wrapper">
+                        <select id="departmentSelect">
+                            <option value="all">All Specialties</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Doctor</label>
+                    <div class="select-wrapper">
+                        <select id="doctorSelect" required>
+                            <option value="" disabled selected>Select a doctor...</option>
+                        </select>
+                        <small class="error-msg"></small>
+                    </div>
+                </div>
+
+                <!-- Profile Widget -->
+                <div id="doctorCardSection" class="doctor-card-hidden">
+                    <div class="doctor-card">
+                        <img id="dcPhoto" src="" alt="Doctor" class="dc-photo">
+                        <div class="dc-info">
+                            <h3 id="dcName"></h3>
+                            <p class="dc-spec" id="dcSpec"></p>
+                            <div class="dc-details">
+                                <span><strong>Experience:</strong> <span id="dcExp"></span></span>
+                                <span><strong>Fee:</strong> <span id="dcFee"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Choose Date</label>
+                    <input type="date" id="appointmentDate" required>
+                    <small class="error-msg"></small>
+                </div>
+
+                <div class="form-group">
+                    <label>Select Time Slot</label>
+                    <div class="slots-container" id="slotsContainer">
+                        <p class="placeholder-text">Pick a doctor and date to see slots.</p>
+                    </div>
+                    <small class="error-msg"></small>
+                    <input type="hidden" id="selectedSlot" required>
+                </div>
+
+                <button type="submit" class="btn-primary"
+                    style="width: 100%; justify-content: center; margin-top: 1rem;">
+                    Confirm Appointment
+                </button>
+            </form>
+        </section>
+    </main>
+</section>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="modalOverlay">
+    <div class="booking-receipt-modal">
+        <div class="success-badge">✔</div>
+        <h2 style="font-weight: 800; font-size: 1.5rem; margin-bottom: 0.5rem;">Confirmed!</h2>
+        <p style="color: #64748B;">Your appointment has been scheduled.</p>
+
+        <div class="modal-body">
+            <div class="receipt-row">
+                <span>Reference ID</span>
+                <span id="mRefNo"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Patient</span>
+                <span id="mPatientName" style="color: #3B82F6;"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Phone</span>
+                <span id="mPatientPhone"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Category</span>
+                <span id="mCategory"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Doctor</span>
+                <span id="mDoctorName" style="color: #3B82F6;"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Schedule</span>
+                <span id="mDate"></span>
+            </div>
+            <div class="receipt-row">
+                <span>Time</span>
+                <span id="mSlot"></span>
+            </div>
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-primary" id="closeModalBtn" style="width: 100%;">Done</button>
+        </div>
+    </div>
+</div>
+
+<!-- Removed static My Bookings section - Users use Patient Dashboard now -->
+
+<footer class="main-footer" style="margin-top: 4rem;">
+    <div class="container">
+        <div class="footer-grid">
+            <a href="index.html" class="footer-logo">
+                <div class="logo-icon">+</div> CarePlus
+            </a>
+            <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 CarePlus Medical Group. All Rights
+                Reserved.</p>
+            <div style="display: flex; gap: 20px;">
+                <a href="index.html"
+                    style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Home</a>
+                <a href="booking.html"
+                    style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Bookings</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<!-- Frontend-backend link for Booking page:
+     js/script.js calls get_doctors.php, check_availability.php, book_appointment.php, get_bookings.php, cancel_appointment.php -->
+<script src="js/script.js"></script>
+<!-- Bootstrap 5 JS - For: Jasir -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CarePlus - Modern Healthcare</title>
+    <!-- Bootstrap 5 CSS - For: Jasir -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=2">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <!-- Navigation - For: Jidhin (HTML) & Milan (UI) -->
+    <nav class="glass-card">
+        <a href="#home" class="logo">
+            <div class="logo-icon">+</div> CarePlus
+        </a>
+        <div class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#specialty">Specialties</a>
+            <a href="#doctors">Doctors</a>
+            <a href="#contact">Contact</a>
+            <a href="login.html" class="login-link mobile-only">Login</a>
+            <a href="booking.html" class="btn-primary mobile-only" style="margin-top: 1rem;">Book Now</a>
+        </div>
+        <div class="nav-actions">
+            <a href="login.html" class="btn-outline-primary desktop-only auth-btn" style="padding: 0.6rem 1.5rem; font-size: 0.9rem; margin-right: 10px; text-decoration: none; border-radius: 50px; border: 2px solid var(--primary-blue); color: var(--primary-blue); font-weight: 600; background: transparent; transition: all 0.3s ease;">Login</a>
+            <a href="booking.html" class="btn-primary desktop-only"
+                style="padding: 0.6rem 1.5rem; font-size: 0.9rem;">Book Now</a>
+            <button class="mobile-menu-btn" id="menuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Healthcare <span>Reimagined</span> for You</h1>
+            <p>Skip the wait and book top-tier specialists instantly. Modern medicine meets seamless interface for your
+                peace of mind.</p>
+            <div style="display: flex; gap: 15px;">
+                <a href="booking.html" class="btn-primary">Book Appointment →</a>
+                <a href="#specialty" class="btn-secondary" style="border-radius: 50px; padding: 1rem 2rem;">Explore
+                    Specialties</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <div class="image-container">
+                <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=1000&q=80"
+                    alt="Specialist" class="main-img">
+                <div class="floating-card glass-card">
+                    <div
+                        style="background: #DCFCE7; color: #16A34A; border-radius: 10px; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+                        ✔</div>
+                    <div>
+                        <div style="font-weight: 800; font-size: 1rem;">100% Secure</div>
+                        <div style="font-size: 0.8rem; color: #64748B;">Validated Appointments</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Specialty Section -->
+    <section class="section-padding" id="specialty">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our <span>Specialties</span></h2>
+                <p>We provide specialized care across various medical fields using the latest technology.</p>
+            </div>
+            <div class="specialty-grid">
+                <div class="spec-card glass-card">
+                    <div class="spec-icon">❤️</div>
+                    <h3>Cardiology</h3>
+                    <p>Expert heart care focusing on prevention, diagnosis, and treatment of cardiovascular diseases.
+                    </p>
+                </div>
+                <div class="spec-card glass-card">
+                    <div class="spec-icon">✨</div>
+                    <h3>Dermatology</h3>
+                    <p>Advanced skin, hair, and nail care with clinical and cosmetic dermatology excellence.</p>
+                </div>
+                <div class="spec-card glass-card">
+                    <div class="spec-icon">🧠</div>
+                    <h3>Neurology</h3>
+                    <p>Specialized treatment for disorders of the nervous system, including the brain and spinal cord.
+                    </p>
+                </div>
+                <div class="spec-card glass-card">
+                    <div class="spec-icon">🦴</div>
+                    <h3>Orthopedics</h3>
+                    <p>Comprehensive care for musculoskeletal system, including joints, ligaments, and bones.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Doctors Display Section -->
+    <section class="section-padding" id="doctors" style="background: #F1F5F9;">
+        <div class="container">
+            <div class="section-header">
+                <h2>Meet Our <span>Experts</span></h2>
+                <p>Consult with world-class specialists with years of proven clinical experience.</p>
+            </div>
+            <div class="doctors-list-grid" id="homeDoctorsGrid">
+                <!-- AJAX Injected Cards -->
+                <p style="text-align: center; grid-column: 1/-1;">Loading our specialists...</p>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <a href="booking.html" class="btn-primary">View Availability & Book</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section-padding" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Get in <span>Touch</span></h2>
+                <p>Have questions? Reach out to our 24/7 helpdesk or visit our hospital.</p>
+            </div>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📍</div>
+                        <div>
+                            <h4>Our Location</h4>
+                            <p>AJCE Campus, Kanjirappally, Kottayam, Kerala - 686518</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-item-icon">📞</div>
+                        <div>
+                            <h4>Call Us</h4>
+                            <p>+91 4828 234567</p>
+                            <p>+91 9447 123456</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="contactForm" class="contact-form glass-card">
+                    <div id="contactAlert" class="alert d-none" style="margin-bottom: 1rem;"></div>
+                    <div class="form-row">
+                        <input type="text" id="contactName" placeholder="Your Name" required>
+                        <input type="email" id="contactEmail" placeholder="Your Email" required>
+                    </div>
+                    <input type="tel" id="contactWhatsapp" placeholder="WhatsApp Number" required style="margin-top: 1rem;">
+                    <input type="text" id="contactSubject" placeholder="Subject" style="margin-top: 1rem;">
+                    <textarea id="contactMessage" placeholder="Your Message"
+                        required
+                        style="margin-top: 1rem; width: 100%; height: 120px; padding: 1rem; border: 2px solid #F1F5F9; border-radius: 12px; font-family: inherit;"></textarea>
+                    <button type="submit" class="btn-primary"
+                        style="margin-top: 1.5rem; width: 100%; justify-content: center;">Send Message</button>
+                </form>
+                <div id="contactFormRestricted" class="contact-form glass-card d-none">
+                    <h4 style="margin: 0 0 0.75rem 0; color: var(--text-dark);">Messages Unavailable</h4>
+                    <p style="margin: 0; color: var(--text-muted);">
+                        This message form is only available for visitors and logged-in patient accounts.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <a href="#home" class="footer-logo">
+                    <div class="logo-icon">+</div> CarePlus
+                </a>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">&copy; 2026 CarePlus Medical Group. All Rights
+                    Reserved.</p>
+                <div style="display: flex; gap: 20px;">
+                    <a href="#home" style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Home</a>
+                    <a href="booking.html"
+                        style="color: var(--text-muted); text-decoration: none; font-size: 0.9rem;">Bookings</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JQuery & Logic - For: Krishna (JS) & Joseph (jQuery) -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="js/auth.js?v=2"></script>
+    <script src="js/script.js?v=3"></script>
+    <script>
+        $(document).ready(function () {
+            $(window).scroll(function () {
+                if ($(window).scrollTop() > 50) {
+                    $('nav').addClass('nav-sticky');
+                } else {
+                    $('nav').removeClass('nav-sticky');
+                }
+            });
+
+        });
+    </script>
+    <!-- Bootstrap 5 JS - For: Jasir -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/bundle.min.js"></script>
+</body>
+
+</html>

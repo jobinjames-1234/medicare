@@ -1,0 +1,23 @@
+/**
+ * CarePlus Hospital System - Main Stylesheet
+ * This file serves as the entry point for modularized CSS.
+ * Teammates: Please edit the specific files in the /modules folder.
+ */
+
+/* 1. Base Styles & Global Variables */
+@import 'modules/base.css';
+
+/* 2. Navigation & Mobile Menu */
+@import 'modules/nav.css';
+
+/* 3. Layout Sections (Hero, Footer, Grids) */
+@import 'modules/layout.css';
+
+/* 4. UI Components (Buttons, Cards, Modals) */
+@import 'modules/components.css';
+
+/* 5. Forms & Interaction (Booking, Slots) */
+@import 'modules/forms.css';
+
+/* 6. Dashboard Specific Styles */
+@import 'modules/dashboards.css';
